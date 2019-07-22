@@ -1,32 +1,32 @@
 use crate::common::*;
 
-#[derive(Clone, Debug)]
+/// A common noun, such as "chien" or "maison".
+#[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Noun {
-    singular: String,
-    plural: String,
+    word: String,
+    number: Number,
     gender: Gender,
     beginning: Beginning
 }
 
 impl Noun {
     /// Create a common noun.
-    pub fn new(singular: String, plural: String, gender: Gender, beginning: Beginning) -> Noun {
+    pub fn new(word: String, number: Number, gender: Gender, beginning: Beginning) -> Noun {
         Noun {
-            singular,
-            plural,
+            word,
+            number,
             gender,
             beginning,
         }
     }
 
-    /// Get the singular form.
-    pub fn singular(&self) -> &str {
-        &self.singular
+    pub fn word(&self) -> &str {
+        &self.word
     }
     
     /// Get the plural form.
-    pub fn plural(&self) -> &str {
-        &self.plural
+    pub fn number(&self) -> Number {
+        self.number
     }
 
     /// Get the grammatical gender.

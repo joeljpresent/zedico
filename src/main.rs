@@ -4,13 +4,15 @@ use common::*;
 mod noun;
 use noun::*;
 
+mod determiner;
+use determiner::*;
+
 fn main() {
-    let saucisse = Noun::new("saucisse".into(), "saucisses".into(), Gender::Feminine, Beginning::Consonant);
-    let joyau = Noun::new("joyau".into(), "joyaux".into(), Gender::Masculine, Beginning::Consonant);
-    let souris = Noun::new("souris".into(), "souris".into(), Gender::Feminine, Beginning::Consonant);
-    let oeil = Noun::new("œil".into(),"yeux".into(), Gender::Masculine, Beginning::VowelOrMuteH);
-    println!("{} - {} ({:?} {:?})", saucisse.singular(), saucisse.plural(), saucisse.gender(), saucisse.beginning());
-    println!("{} - {}", joyau.singular(), joyau.plural());
-    println!("{} - {}", souris.singular(), souris.plural());
-    println!("{} - {}", oeil.singular(), oeil.plural());
+    let saucisses = Noun::new("saucisses".into(), Number::Plural, Gender::Feminine, Beginning::Consonant);
+    let des = Determiner::new(DeterminerKind::IndefeniteArticle, Gender::Masculine, Number::Plural, Beginning::Consonant);
+    let joyau = Noun::new("joyau".into(), Number::Singular, Gender::Masculine, Beginning::Consonant);
+    let souris = Noun::new("souris".into(), Number::Plural, Gender::Feminine, Beginning::Consonant);
+    let oeil = Noun::new("œil".into(), Number::Singular, Gender::Masculine, Beginning::VowelOrMuteH);
+    println!("{:?}\n{:?}\n{:?}\n{:?}", saucisses, joyau, souris, oeil);
+    println!("{} {}", des.word(), saucisses.word());
 }
