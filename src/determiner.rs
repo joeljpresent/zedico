@@ -3,7 +3,7 @@ use crate::common::*;
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum DeterminerKind {
     DefiniteArticle,
-    IndefeniteArticle,
+    IndefiniteArticle,
     PartitiveArticle,
     // PossessiveDeterminer,
     Demonstrative,
@@ -15,7 +15,7 @@ pub struct Determiner {
     kind: DeterminerKind,
     gender: Gender,
     number: Number,
-    beginning: Beginning,
+    beginning /* of the following word */: Beginning,
 }
 
 impl Determiner {
@@ -50,7 +50,7 @@ impl Determiner {
                 }
             }
 
-            DeterminerKind::IndefeniteArticle => {
+            DeterminerKind::IndefiniteArticle => {
                 if self.number == Number::Plural {
                     "des"
                 } else if self.gender == Gender::Masculine {
@@ -89,7 +89,7 @@ impl Determiner {
     }
 
     pub fn kind(&self) -> DeterminerKind {
-        self.kind()
+        self.kind
     }
 
     pub fn gender_of_noun(&self) -> Gender {
@@ -106,7 +106,7 @@ impl Determiner {
 
     pub fn beginning_of_determiner(&self) -> Beginning {
         // If this determiner is "un" or "une"
-        if self.kind == DeterminerKind::IndefeniteArticle && self.number == Number::Singular {
+        if self.kind == DeterminerKind::IndefiniteArticle && self.number == Number::Singular {
             Beginning::VowelOrMuteH
         } else {
             Beginning::Consonant

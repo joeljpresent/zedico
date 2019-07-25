@@ -1,3 +1,8 @@
+#![allow(unused)]
+
+mod adjective;
+use adjective::*;
+
 mod common;
 use common::*;
 
@@ -8,11 +13,9 @@ mod determiner;
 use determiner::*;
 
 fn main() {
-    let saucisses = Noun::new("saucisses".into(), Number::Plural, Gender::Feminine, Beginning::Consonant);
-    let des = Determiner::new(DeterminerKind::IndefeniteArticle, Gender::Masculine, Number::Plural, Beginning::Consonant);
-    let joyau = Noun::new("joyau".into(), Number::Singular, Gender::Masculine, Beginning::Consonant);
-    let souris = Noun::new("souris".into(), Number::Plural, Gender::Feminine, Beginning::Consonant);
-    let oeil = Noun::new("œil".into(), Number::Singular, Gender::Masculine, Beginning::VowelOrMuteH);
-    println!("{:?}\n{:?}\n{:?}\n{:?}", saucisses, joyau, souris, oeil);
-    println!("{} {}", des.word(), saucisses.word());
+    let saucisse = Noun::new_feminine_noun("saucisse", "saucisses", Beginning::Consonant);
+    let les = Determiner::new(DeterminerKind::DefiniteArticle, Gender::Masculine, Number::Plural, Beginning::Consonant);
+    let oeil = Noun::new_masculine_noun("œil", "yeux", Beginning::VowelOrMuteH);
+    let beau = Adjective::new("beau".into(), "belle".into(), "beaux".into(), "belles".into(), Beginning::Consonant, AdjectivePosition::BeforeNoun("bel".into()));
+    println!("{} {} {}", les.word(), beau.fem_pl(), saucisse.plural().unwrap());
 }
